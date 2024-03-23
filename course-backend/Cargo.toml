@@ -9,3 +9,6 @@ edition = "2021"
 rocket={version="0.5.0-rc.1",features = ["json"]}
 serde="1.0.136"
 chrono="0.4"
+diesel={version="2.1.0",features = ["postgres"]}
+dotenvy="0.15"
+
