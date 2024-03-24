@@ -1,7 +1,7 @@
 // @generated automatically by Diesel CLI.
 
 diesel::table! {
-    course (crscode) {
+    courses (crscode) {
         crscode -> Varchar,
         crsname -> Varchar,
         lechrs -> Varchar,
@@ -10,7 +10,3 @@ diesel::table! {
         credits -> Int4,
     }
 }
-
-diesel::allow_tables_to_appear_in_same_query!(
-    courses,
-);
