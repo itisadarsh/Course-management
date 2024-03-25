@@ -11,4 +11,4 @@ serde="1.0.136"
 chrono="0.4"
 diesel={version="2.1.0",features = ["postgres"]}
 dotenvy="0.15"
-
+rocket_cors = { version = "0.6.0", default-features = false }

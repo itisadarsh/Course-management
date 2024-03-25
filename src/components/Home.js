@@ -10,11 +10,34 @@ const Home=()=>{
     const [detail,setdetail]=useState(false);
 
     async function fetchData(){
-        const data=await axios.get(`${process.env.REACT_APP_BASE_URL}/getemp`);
-        console.log(data.data.data);
-         setstuddetail(data.data.data);
-        console.log(studdetail);
-        setdetail(true)
+        console.log("hi");
+        // console.log(`https://cors-anywhere.herokuapp.com/${process.env.REACT_APP_BASE_URL}/list`);
+        // const data=await axios.get(`${process.env.REACT_APP_BASE_URL}/list`);
+        // console.log(data);
+
+
+
+       const d=await fetch(`${process.env.REACT_APP_BASE_URL}/list`, {
+            // method: ['GET','POST'],
+            headers: {
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': 'http://127.0.0.1:9796',
+            },
+            
+          })
+          .then(response => {
+            console.log('Response:', response);
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+          console.log(d);
+
+
+       
+        //  setstuddetail(data.data.data);
+        // console.log(studdetail);
+        // setdetail(true)
         
     }
 

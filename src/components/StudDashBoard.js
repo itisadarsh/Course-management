@@ -3,8 +3,9 @@ import { FaBackward } from "react-icons/fa6";
 import {useNavigate} from "react-router-dom"
 import {useState} from "react"
 import axios from "axios"
+import React from "react";
 
-const studDashboard=()=>{
+const StudDashboard=()=>{
     const navigate=useNavigate();
 
     const[formdata,setformdata]=useState({name:"",email:"",title:"",dept:"",role:""});
@@ -20,9 +21,9 @@ const studDashboard=()=>{
 
    async function submitHandler(event){
         event.preventDefault();
-            console.log(`${process.env.REACT_APP_BASE_URL}/getcourses`)
-        const response=await axios.post(
-            `${process.env.REACT_APP_BASE_URL}/createemp`,formdata).then(()=>{
+            console.log(`${process.env.REACT_APP_BASE_URL}/list`)
+        const response=await axios.get(
+            `${process.env.REACT_APP_BASE_URL}/list`,formdata).then(()=>{
 
         }).catch((err)=>{
             console.log(err);
@@ -69,4 +70,4 @@ const studDashboard=()=>{
     );
 }
 
-export default studDashboard;
+export default StudDashboard;
