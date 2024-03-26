@@ -1,102 +1,66 @@
 #[macro_use] extern crate rocket;
 
 use diesel::prelude::*;
-// use diesel::pg::PgConnection;
-// use rocket::{Build, Rocket};
-
-use self::models::*;
-use self::schema::courses::dsl::*;
-// use rocket_cors::CorsLayer;
-
 use rocket::serde::json::Json;
 
+// use serde::Deserialize;
 
 mod database;
 mod models;
 mod schema;
 
+use self::models::*;
+use self::schema::courses::dsl::courses;
+use rocket_cors::{CorsOptions, AllowedOrigins};
+
+
+// #[derive(Debug, Deserialize, Insertable)]
+// // #[table_name = "courses"] // Specify the table name here
+ struct CoursesD {
+     crscode: String,
+     crsname: String,
+     lechrs: String,
+     tuthrs: String,
+     prachrs: String,
+     credits: i32,
+}
+
+
 #[get("/list")]
 fn index() -> Json<Vec<Courses>> {
     let connection: &mut PgConnection = &mut database::establish_connection();
-
     courses.load::<Courses>(connection).map(Json).expect("Error loading Course")
 }
 
+#[post("/postcourses", data = "<course_data>")]
+fn postcourses(course_data:Json<String>) -> &'static str {
+//     let new_course = course_data.into_inner();
+//     let connection = &mut database::establish_connection();
 
-#[get("/getcourses")]
-fn getcourses()->&'static str{
-    "hello"
+//     // diesel::insert_into(courses)
+//     //      .values(&new_course)
+//     //     .execute(connection)
+//     //     .expect("Error inserting course into database");
+
+    "Course created successfully"
 }
-
-// #[derive(Debug,Clone,FromForm,Serialize,Deserialize)]
-// #[serde(crate="rocket::serde")]
-
-
-// #[post("/courses",data="<form>")]
-// fn post(form:Form<Course>,msg:&State<Sender<Course>>){
-
-//         let _res=queue.send();
-// }
-
-// let cors = CorsOptions::default()
-// .allow_credentials(true)
-// .to_cors().expect("Error creating CORS options");
-
-// use http::header::{CONTENT_TYPE};
-
-// const CORS = CorsLayer::new()
-//    .allow_methods([Method::GET, Method::POST])
-//    .allow_origin(Any)
-//    .allow_headers([CONTENT_TYPE]);
 
 
 #[launch]
-fn rocket()-> _ {
-  rocket::build().configure(rocket::Config::figment().merge(("port", 9796)))
-  .mount("/api",routes![getcourses,index])
+fn rocket() -> _ {
+    let cors: rocket_cors::Cors = CorsOptions {
+        allowed_origins: AllowedOrigins::all(),
+        allowed_methods: vec![rocket::http::Method::Get, rocket::http::Method::Post]
+            .into_iter()
+            .map(From::from)
+            .collect(),
+        ..Default::default()
+    }
+    .to_cors()
+    .expect("Error creating CORS options");
+
+    rocket::build()
+        .configure(rocket::Config::figment().merge(("port", 9796)))
+        .attach(cors)
+        .mount("/api", routes![postcourses, index])
 }
-
-
-
-
-
-
-
-
-
-
-
-
-// use std::error::Error;
-
-// use rocket::http::Method;
-// use rocket::{get, routes};
-// use rocket_cors::{AllowedHeaders, AllowedOrigins};
-
-
-// #[rocket::main]
-// async fn main() -> Result<(), Box<dyn Error>> {
-//     let allowed_origins = AllowedOrigins::some_exact(&["https://www.acme.com"]);
-
-//     // You can also deserialize this
-//     let cors = rocket_cors::CorsOptions {
-//         allowed_origins,
-//         allowed_methods: vec![Method::Get].into_iter().map(From::from).collect(),
-//         allowed_headers: AllowedHeaders::some(&["Authorization", "Accept"]),
-//         allow_credentials: true,
-//         ..Default::default()
-//     }
-//     .to_cors()?;
-
-//     rocket::build()
-//         .mount("/", routes![index,getcourses])
-//         .attach(cors)
-//         .launch()
-//         .await?;
-
-//     Ok(())
-// }
-
-
-
-
