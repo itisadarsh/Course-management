@@ -1,0 +1,270 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+
+body{
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color:black;
+    background-size: cover;
+}
+
+.user-info{
+    padding: 1rem ;
+    flex: 1;
+    background: white;
+    border-radius: 2rem;
+    border: rgb(53,53,53) 0.1rem solid;
+    border-color: rgb(163,163,163);
+    text-align: center;
+    width: 100%;
+}
+
+.container{
+    width: 100%;
+    max-width: 650px;
+    background-color: white;
+    padding: 40px;
+    margin: 0 60px;
+    border-radius: 10px;
+}
+
+.form-title{
+    font-size: 26px;
+    font-weight: 600;
+    text-align: center;
+    padding-bottom: 6px;
+    color: black;
+}
+
+.main-user-info{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+.user-input-box:nth-child(2n){
+    justify-content: end;
+}
+
+.user-input-box{
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    padding-bottom: 15px;
+}
+
+.user-input-box label{
+    width: 95%;
+    color: black;
+    font-size: 20px;
+    font-weight: 400;
+    margin: 5px 0;
+}
+
+.user-input-box input{
+    height: 40px;
+    width: 95%;
+    border-radius: 7px;
+    outline: none;
+    border: 1px solid black;
+    padding: 0 10px;
+}
+
+.gender-title{
+    color:black;
+    font-size: 24px;
+    font-weight: 600;
+    border-bottom: 1px solid black;
+}
+
+.gender-category{
+    margin: 15px 0;
+    color: black;
+}
+
+.gender-category label{
+    padding: 0 20px 0 5px;
+}
+
+.gender-category label,
+.gender-category input,
+.form-submit-btn input{
+    cursor: pointer;
+}
+
+.form-submit-btn{
+    margin-top: 40px;
+}
+
+.form-submit-btn input{
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    font-size: 20px;
+    padding: 10px;
+    border:none;
+    border-radius: 3px;
+    color: white;
+    background: #343434;
+}
+
+.form-submit-btn input:hover{
+    background: black;
+    color: rgb(255, 255, 255);
+}
+
+   /*///////////////////////////////////*/
+
+.form-submit-btn a{
+    cursor: pointer;
+}
+
+
+.form-submit-btn a{
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    font-size: 20px;
+    padding: 10px;
+    border:none;
+    border-radius: 3px;
+    color: white;
+    background: #343434;
+    text-decoration: none;
+}
+
+.form-submit-btn a:hover{
+    background: black;
+    color: rgb(255, 255, 255);
+}
+
+.message{
+    width: 100%;
+    position: relative;
+    margin-bottom: 60px;
+    display: flex;
+    justify-content: center;
+}
+.message .success{
+    font-size: 20px;
+    color: green;
+    position: absolute;
+    animation: buttons .3s linear;
+    display: none;
+}
+.message .danger{
+    font-size: 20px;
+    color: red;
+    position: absolute;
+    transition: .3s;
+    animation: buttons .3s linear;
+    display: none;
+}
+
+@media(max-width: 600px){
+    .container{
+        min-width: 280px;
+    }
+
+    .user-input-box{
+        margin-bottom: 12px;
+        width: 100%;
+    }
+
+    .user-input-box:nth-child(2n){
+        justify-content: space-between;
+    }
+
+    .gender-category{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .main-user-info{
+        max-height: 380px;
+        overflow: auto;
+    }
+
+    .main-user-info::-webkit-scrollbar{
+        width: 0;
+    }
+}
+
+
+/*BUTTONS*/
+
+.btn_web{
+    color: black;
+    padding: 8px 28px;
+    border-radius: 12px;
+    background: white;
+    transition: all 0.2s ease;
+    font-size: 1rem;
+  }
+  
+  .btn_web:active{
+    transform:scale(0.96);
+  }
+  .btn_web:hover{
+    transition: all 0.5s ease;
+    background-color: grey;
+    color: black;
+  }
+
+.special-btn{
+    margin-top: 20px;
+}
+
+.special-btn a{
+    color: white;
+    padding: 1px 2px;
+    background: black;
+    transition: all 0.2s ease;
+    font-size: 20px;
+    text-decoration: none;
+    margin-right: 2rem;
+    border-radius: 8px;
+    padding: 0.5rem;
+}
+.special-btn a:active{
+    transform:scale(0.96);
+  }
+  .special-btn a:hover{
+    transition: all 0.5s ease;
+    background-color: grey;
+    color: white;
+  }
+
+/*TABLE */
+
+#customers {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  #customers tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #customers tr:hover {background-color: #ddd;}
+  
+  #customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: black;
+    color: white;
+  }

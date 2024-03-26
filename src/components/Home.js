@@ -80,7 +80,7 @@ const Home=()=>{
                   <div className=" relative w-full h-full ">
                     <button className="font-bold bg-red-400  pl-2 absolute top-0 right-0 p-1" onClick={()=>{setSearched(false)}}>X</button>
           <br /> <label htmlFor="">Enter the credits</label>
-          <input type="number" name="credit" className="  " value={credit} onChange={(event)=>{setCredit(event.target.value); console.log(event.target.value)}} /><br /><br />
+          <input type="number" name="credit" className=" pl-2 " value={credit} onChange={(event)=>{setCredit(event.target.value); console.log(event.target.value)}} /><br /><br />
           <button className="font-bold bg-green-300 text-white px-5 rounded-md" onClick={()=>{setcredited(true);setSearched(false); }}>Ok</button>
 
        </div> 

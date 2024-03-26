@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/uploadride.css">
+    <title>Document</title>
+</head>
+<body>
+    <% if (!user) { %>
+        <!--<h2>Signup</h2>
+        <form action="/signup" method="post">
+          <label for="signup-username">Username:</label>
+          <input type="text" id="signup-username" name="username" required>
+          <br>
+          <label for="signup-password">Password:</label>
+          <input type="password" id="signup-password" name="password" required>
+          <br>
+          <button type="submit">Signup</button>
+        </form> -->
+        <div class="container">
+          <h1 class="form-title">Sign UP</h1>
+          <form action="/signup" method="post">
+            <div class="main-user-info">
+              <div class="user-input-box">
+                <label for="signup-password">Name:</label>
+                <input type="name"
+                        id="signup-password"
+                        name="name"
+                        placeholder="Enter Name"/ required>
+              </div>
+              <div class="user-input-box">
+                <label for="signup-username">Email:</label>
+                <input type="text"
+                        id="signup-username"
+                        name="username"
+                        placeholder="Enter Email"/ required>
+              </div>
+              <div class="user-input-box">
+                <label for="signup-password">Password:</label>
+                <input type="password"
+                        id="signup-password"
+                        name="password"
+                        placeholder="Enter Password"/ required>
+              </div>
+            </div>
+            
+            <div class="form-submit-btn">
+              <input type="submit" value="Signup">
+              <a href="/">Back</a>
+              <br>
+            </div>
+            <% if (errorMessage) { %>
+              <p style="color: red;"><%= errorMessage %></p>
+            <% } %>
+          </form>
+        </div>
+      <% } else { %>
+        <h1>Hello <%= user.username %></h1>
+        <form action="/logout" method="post">
+          <button type="submit">Logout</button>
+          <a href="/">Back</a>
+        </form>
+      <% } %>
+    
+</body>
+</html>
