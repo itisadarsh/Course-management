@@ -12,22 +12,18 @@ import bcrypt from 'bcrypt';
 
 
 const app = express();
-const port = 3000;
+const port = 6001;
 app.set('view engine', 'ejs')
 
 const db = new pg.Client({
     user: process.env.DB_USER,
     host: process.env.DB_HOST,
     database: process.env.DB_DATABASE,
-    //password: process.env.DB_PASSWORD,
     port: process.env.DB_PORT,
-    //user: "postgres",
-    //host: "localhost",
-    //database: "carpooling",
-    password: "Vamsi@1440",
-    //port: 5432
+    password: "9755686556Ap$",
+    
   });
-  db.connect();
+  db.connect().then(()=>{console.log("DB_connected")});
 
   app.use(
     session({
@@ -55,12 +51,14 @@ app.use((req, res, next) => {
 app.get('/', (req,res) =>{
     //const imagePath = 'https://img.freepik.com/free-vector/lightened-luxury-sedan-car-darkness-with-headlamps-rear-lights-lit-realistic-image-reflection_1284-28803.jpg?w=996&t=st=1701346107~exp=1701346707~hmac=af8053a5f420e9a27c88f37d3c45b7f585401ff64d3381ee6403d883846cec81';
     //res.render('yourFile', { imagePath });
-    res.render("main");
+    let errorMessage = null; 
+    res.render("main", { errorMessage: errorMessage });
 });
 
 
 
 app.get('/signup',(req,res)=>{
+   
   res.render("signup.ejs",{ errorMessage: null });
 });
 
@@ -69,55 +67,6 @@ app.get('/signup',(req,res)=>{
 app.get('/login', async(req,res) =>{
   res.render("login.ejs",{ errorMessage: null });
 });
-
-// Signup route
-// app.post('/signup', async (req, res) => {
-//   const { username, password } = req.body;
-
-//   try {
-//     const result = await db.query('INSERT INTO users (username, password) VALUES ($1, $2) RETURNING *', [
-//       username,
-//       password,
-//     ]);
-
-//     req.session.user = result.rows[0];
-//     res.redirect('/');
-//   } catch (error) {
-//     console.error('Error during signup:', error);
-//     res.status(500).send('Error during signup');
-//   }
-// });
-
-// app.post('/signup', async (req, res) => {
-//   const { name, username, password } = req.body;
-
-//   try {
-//     // Check if the email already exists
-//     const emailExists = await db.query('SELECT * FROM users WHERE username = $1', [username]);
-
-//     if (emailExists.rows.length > 0) {
-//       // Email already exists, send a message to the user
-//       res.render('signup', { errorMessage: 'Email already exists. Please use a different email.' });
-//     }
-//     else if (password.length < 8) {
-//       // Password is less than 8 characters, render an error message
-//       res.render('signup', { errorMessage: 'Password must be at least 8 characters long.' });
-//     }else {
-//       // Email does not exist, proceed with signup
-//       const result = await db.query('INSERT INTO users (name, username, password) VALUES ($1, $2,$3) RETURNING *', [
-//         name,
-//         username,
-//         password,
-//       ]);
-
-//       req.session.user = result.rows[0];
-//       res.redirect('/');
-//     }
-//   } catch (error) {
-//     console.error('Error during signup:', error);
-//     res.status(500).send('Error during signup');
-//   }
-// });
 
 app.post('/signup', async (req, res) => {
   const { name, username, password } = req.body;
@@ -150,30 +99,6 @@ app.post('/signup', async (req, res) => {
     res.status(500).send('Error during signup');
   }
 });
-
-
-// Login route
-// app.post('/login', async (req, res) => {
-//   const { username, password } = req.body;
-
-//   try {
-//     const result = await db.query('SELECT * FROM users WHERE username = $1 AND password = $2', [
-//       username,
-//       password,
-//     ]);
-
-//     if (result.rows.length > 0) {
-//       req.session.user = result.rows[0];
-//       res.redirect('/');
-//     } else {
-//       //res.status(401).send('Invalid credentials');
-//       res.render('login', { errorMessage: 'Invalid credentials. Please check your username and password.' });
-//     }
-//   } catch (error) {
-//     console.error('Error during login:', error);
-//     res.status(500).send('Error during login');
-//   }
-// });
 
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;

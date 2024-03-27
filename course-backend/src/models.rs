@@ -1,8 +1,8 @@
 use diesel::prelude::*;
-use rocket::serde::Serialize;
+use rocket::serde::{Serialize, Deserialize}; 
 // use crate::schema::bird;
 // use crate::schema::courses;
-#[derive(Queryable, Serialize)]
+#[derive(Queryable, Serialize, Deserialize)]
 #[diesel(table_name = crate::schema::courses)]
 #[diesel(check_for_backend(diesel::pg::Pg))]
 #[serde(crate = "rocket::serde")]

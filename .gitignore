@@ -5,6 +5,10 @@
 /.pnp
 .pnp.js
 
+/src/backend_folder/node_modules
+/src/backend_folder/package-lock.json
+/src/backend_folder/package.json
+
 # testing
 /coverage
 

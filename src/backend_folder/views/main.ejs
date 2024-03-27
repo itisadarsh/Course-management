@@ -8,15 +8,6 @@
 </head>
 <body>
     <% if (!user) { %>
-       <!-- <form action="/login" method="post">
-          <label for="login-username">Username:</label>
-          <input type="text" id="login-username" name="username" required>
-          <br>
-          <label for="login-password">Password:</label>
-          <input type="password" id="login-password" name="password" required>
-          <br>
-          <button type="submit">Login</button>
-        </form> -->
         
         <div class="container">
           <h1 class="form-title">Login</h1>
@@ -27,14 +18,14 @@
                 <input type="text"
                         id="login-username"
                         name="username"
-                        placeholder="Enter Email"/ required>
+                        placeholder="Enter Email" required>
               </div>
               <div class="user-input-box">
                 <label for="login-password">Password:</label>
                 <input type="password"
                         id="login-password"
                         name="password"
-                        placeholder="Enter Password"/ required>
+                        placeholder="Enter Password" required>
               </div>
             </div>
             <div class="form-submit-btn">
@@ -42,9 +33,7 @@
               <a href="/">Back</a>
               <br>
             </div>
-            <% if (errorMessage) { %>
-              <p style="color: red;"><%= errorMessage %></p>
-            <% } %>
+            <% if (errorMessage) { %><p style="color: red;"><%= errorMessage %></p><% } %>
           </form>
         </div>
       <% } else { %>
@@ -54,8 +43,5 @@
           <a href="/">Back</a>
         </form>
       <% } %>
-
-
-    
 </body>
 </html>
